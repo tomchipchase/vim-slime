@@ -94,15 +94,15 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! s:DtachSend(config, text)
-  call system("dtach -p " . shellescape(a:config["socket_name"]) . a:text)
+  call system("dtach -p " . shellescape(a:config["socket_name"]) . " " . shellescape(a:text))
 endfunction
 
 function! s:DtachConfig() abort
   if !exists("b:slime_config")
-    let b:slime_config = {"socket_name": "default"}
+    let b:slime_config = {"socket_path": "/tmp/slime.dtach"}
   end
 
-  let b:slime_config["socket_name"] = input("dtach socket name: ", b:slime_config["socket_name"])
+  let b:slime_config["socket_path"] = input("dtach socket path: ", b:slime_config["socket_path"])
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
