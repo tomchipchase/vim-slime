@@ -90,6 +90,22 @@ function! s:WhimreplConfig() abort
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" dtach
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! s:DtachSend(config, text)
+  call system("dtach -p " . shellescape(a:config["socket_name"]) . a:text)
+endfunction
+
+function! s:DtachConfig() abort
+  if !exists("b:slime_config")
+    let b:slime_config = {"socket_name": "default"}
+  end
+
+  let b:slime_config["socket_name"] = input("dtach socket name: ", b:slime_config["socket_name"])
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helpers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
