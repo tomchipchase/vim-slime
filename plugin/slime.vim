@@ -94,7 +94,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! s:DtachSend(config, text)
-  call system("dtach -p " . shellescape(a:config["socket_name"]) . " " . shellescape(a:text))
+  call system("dtach -p " . shellescape(a:config["socket_path"]) . " " . shellescape(a:text))
 endfunction
 
 function! s:DtachConfig() abort
